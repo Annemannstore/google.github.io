@@ -1,1 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      color: #202124;
+      transition: background-color 0.3s, color 0.3s;
+    }
 
+    body.dark-theme {
+      background-color: #181818;
+      color: white;
+    }
+
+    .logo {
+      margin-bottom: 20px;
+      width: 272px;
+      height: 92px;
+    }
+
+    input[type="text"] {
+      width: 70%;
+      max-width: 400px;
+      padding: 12px 15px;
+      font-size: 18px;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #4285f4;
+      box-shadow: 0 0 5px rgba(66, 133, 244, 0.5);
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    .buttons button {
+      padding: 12px 20px;
+      font-size: 16px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #f8f9fa;
+      border: 1px solid #ddd;
+      color: #202124;
+      transition: all 0.3s;
+    }
+
+    .buttons button:hover {
+      background-color: #f1f1f1;
+      border-color: #ccc;
+    }
+
+    .top-buttons {
+      position: absolute;
+      top: 16px;
+      display: flex;
+      width: 100%;
+    }
+
+    /* Кнопка с домиком слева */
+    .home-button {
+      position: absolute;
+      left: 8px;
+      width: 20px;
+      height: 20px;
+      background-color: transparent;
+      border: 2px solid #000;
+      border-radius: 50%;
+      color: #000;
+      font-size: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    /* Кнопка + справа */
+    .plus-button {
+      position: absolute;
+      right: 8px;
+      width: 20px;
+      height: 20px;
+      background-color: transparent;
+      border: 2px solid #ddd;
+      border-radius: 50%;
+      color: #202124;
+      font-size: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .home-button:hover, .plus-button:hover {
+      background-color: #f1f1f1;
+      border-color: #ccc;
+    }
+
+    /* Модальное окно выбора личности */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content input {
+      padding: 10px;
+      font-size: 18px;
+      margin-bottom: 15px;
+      width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .modal-content button {
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      background-color: #4285f4;
+      border: none;
+      color: white;
+    }
+
+    /* Кнопка "Генератор случайного выбора" с иконкой */
+    .randstuff-button {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      border: 2px solid #4285f4;
+      border-radius: 20px;
+      cursor: pointer;
+      background-color: #fff;
+      text-decoration: none;
+      color: #4285f4;
+      font-size: 18px;
+      transition: all 0.3s;
+    }
+
+    .randstuff-button:hover {
+      background-color: #f1f1f1;
+    }
+
+    .randstuff-button img {
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google" class="logo">
+
+  <!-- Поисковая строка -->
+  <form id="searchForm" action="https://www.google.com/search" method="get">
+    <input type="text" id="searchInput" name="q" placeholder="Введите запрос">
+    <div class="buttons">
+      <button type="submit">Поиск</button>
+      <button type="button" onclick="alert('Вам повезёт!')">Мне повезёт!</button>
+    </div>
+  </form>
+
+  <!-- Новые кнопки -->
+  <div class="top-buttons">
+    <button class="home-button" onclick="toggleTheme()">🏠</button> 
+    <button class="plus-button" onclick="openModal()">+</button> 
+  </div>
+
+  <!-- Кнопка "Генератор случайного выбора" с иконкой -->
+  <a class="randstuff-button" href="https://gclnk.com/Spu9nNs8" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Toolbar_star_icon.svg/1024px-Toolbar_star_icon.svg.png" alt="Favorite Icon">
+    RandStuff
+  </a>
+
+  <!-- Модальное окно выбора личности -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <input type="text" id="celebrityInput" placeholder="Введите личность">
+      <button onclick="saveCelebrity()">Сохранить</button>
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const searchForm = document.getElementById('searchForm');
+    const modal = document.getElementById('myModal');
+    const celebrityInput = document.getElementById('celebrityInput');
+    let savedCelebrity = ''; // Переменная для хранения выбранной личности
+
+    // Переключение между светлой и темной темой
+    function toggleTheme() {
+      document.body.classList.toggle('dark-theme');
+    }
+
+    // Перезапуск приложения
+    function restartApp() {
+      location.reload(); // Перезагрузить страницу
+    }
+
+    // Открыть модальное окно
+    function openModal() {
+      modal.style.display = 'flex';
+    }
+
+    // Закрытие модального окна
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    // Сохранение выбора личности (закрытие окна)
+    function saveCelebrity() {
+      const selectedCelebrity = celebrityInput.value.trim();
+      if (selectedCelebrity) {
+        savedCelebrity = selectedCelebrity; // Сохранить выбор
+        console.log(`Выбранная личность: ${savedCelebrity}`);
+      }
+      closeModal(); // Закрытие окна после выбора
+    }
+
+    // Обработка ввода текста для знаков зодиака и других замен
+    searchInput.addEventListener('input', () => {
+      const zodiacs = ['Овен', 'Телец', 'Близнецы', 'Рак', 'Лев', 'Дева', 'Весы', 'Скорпион', 'Стрелец', 'Козерог', 'Водолей', 'Рыбы'];
+      let value = searchInput.value;
+
+      // Если введен знак зодиака, заменяем на фразу "Характеристика знака"
+      if (zodiacs.some(zodiac => value.includes(zodiac))) {
+        searchInput.value = "Характеристика знака";
+      }
+    });
+
+    // Когда форма отправляется, отображаем исходный запрос на странице Google
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const query = searchInput.value;
+
+      // Проверка на ключевые слова и вывод результата на основе выбранной личности
+      const keywords = ['актер', 'актёр', 'кино'];
+      if (keywords.some(keyword => query.toLowerCase().includes(keyword)) && savedCelebrity) {
+        // Если в запросе содержится ключевое слово и есть сохраненная личность
+        window.location.href = `https://www.google.com/search?q=${encodeURIComponent(savedCelebrity)}`;
+      } else {
+        // Обычный поиск
+        window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+      }
+    });
+  </script>
+</body>
+</html>
